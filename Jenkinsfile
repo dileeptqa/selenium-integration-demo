@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/selenium-integration-demo.git' // Update with actual repo
+                git 'https://github.com/dileeptqa/selenium-integration-demo.git' // Update with actual repo
             }
         }
 
