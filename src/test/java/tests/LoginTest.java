@@ -1,6 +1,9 @@
 package tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -17,6 +20,9 @@ public class LoginTest {
     public void testGoogle() {
         driver.get("https://google.com");
         System.out.println("Title: " + driver.getTitle());
+        WebElement searchBar = driver.findElement(By.xpath("//textarea[@class=\"gLFyf\"]"));
+        searchBar.sendKeys("amazon");
+        searchBar.sendKeys(Keys.ENTER);
     }
 
     @AfterMethod
