@@ -21,7 +21,7 @@ public class LoginTest {
     public void testGoogle() throws InterruptedException {
         driver.get("https://google.com");
         System.out.println("Title: " + driver.getTitle());
-        WebElement searchBar = driver.findElement(By.xpath("//textarea[@class=\"gLFyf\"]"));
+        WebElement searchBar = driver.findElement(By.xpath("//textarea[@class=\"gLFy\"]"));
         searchBar.sendKeys("amazon");
         searchBar.sendKeys(Keys.ENTER);
         Thread.sleep(5000);
