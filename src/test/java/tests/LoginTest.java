@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utils.JiraUploader;
 
 public class LoginTest {
     WebDriver driver;
@@ -20,7 +21,7 @@ public class LoginTest {
     public void testGoogle() throws InterruptedException {
         driver.get("https://google.com");
         System.out.println("Title: " + driver.getTitle());
-        WebElement searchBar = driver.findElement(By.xpath("//textarea[@class=\"gLFyf\"]"));
+        WebElement searchBar = driver.findElement(By.xpath("//textarea[@class=\"gLFy\"]"));
         searchBar.sendKeys("amazon");
         searchBar.sendKeys(Keys.ENTER);
         Thread.sleep(5000);
@@ -28,6 +29,15 @@ public class LoginTest {
 
     @AfterMethod
     public void reportResult(ITestResult result) {
+
+        if (result.getStatus() == ITestResult.FAILURE) {
+            try {
+                JiraUploader.createBug("Test Failed: " + result.getName(),
+                        "Failure in test case: " + result.getThrowable());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         boolean status = result.getStatus() == ITestResult.SUCCESS;
         System.out.println("Test result for " + result.getName() + ": " + (status ? "PASS" : "FAIL"));
         // qTestUploader.uploadResultToQTest(result.getName(), status);  // Optional
