@@ -44,7 +44,6 @@ public class LoginTest {
         boolean status = result.getStatus() == ITestResult.SUCCESS;
         System.out.println("Test result for " + result.getName() + ": " + (status ? "PASS" : "FAIL"));
 //        QTestUploader.createDefect(result.getName(), result.getThrowable().toString());
-        //
     }
 
     @AfterClass
