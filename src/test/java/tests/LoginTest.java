@@ -8,6 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.JiraUploader;
+import utils.QTestUploader;
+
+import java.io.IOException;
 
 public class LoginTest {
     WebDriver driver;
@@ -28,7 +31,7 @@ public class LoginTest {
     }
 
     @AfterMethod
-    public void reportResult(ITestResult result) {
+    public void reportResult(ITestResult result) throws IOException {
 
         if (result.getStatus() == ITestResult.FAILURE) {
             try {
@@ -40,7 +43,7 @@ public class LoginTest {
         }
         boolean status = result.getStatus() == ITestResult.SUCCESS;
         System.out.println("Test result for " + result.getName() + ": " + (status ? "PASS" : "FAIL"));
-        // qTestUploader.uploadResultToQTest(result.getName(), status);  // Optional
+//        QTestUploader.createDefect(result.getName(), result.getThrowable().toString());
     }
 
     @AfterClass
